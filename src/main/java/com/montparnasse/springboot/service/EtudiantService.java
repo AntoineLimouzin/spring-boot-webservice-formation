@@ -9,29 +9,30 @@ import com.montparnasse.springboot.dao.EtudiantDao;
 import com.montparnasse.springboot.domaine.Etudiant;
 
 @Service
-public class EtudiantService {
+public class EtudiantService implements IService {
 	
 	@Autowired
-	EtudiantDao dao;
+	private EtudiantDao dao;
 	
-	public void add(Etudiant e)
+	public Etudiant add(Etudiant e)
 	{
-		dao.save(e);
+		return dao.save(e);
 	}
 	
-	public void update(Etudiant e)
+	public Etudiant update(Etudiant e)
 	{
-		dao.save(e);
+		return dao.save(e);
 	}
 	
-	public void delete(Long id)
+	public boolean delete(Long id)
 	{
 		dao.deleteById(id);
+		return true;
 	}
 	
 	public Etudiant get(Long id)
 	{
-		return dao.getOne(id);
+		return dao.findById(id).get();
 	}
 	
 	public List<Etudiant> getAll()
