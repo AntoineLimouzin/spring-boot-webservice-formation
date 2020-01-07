@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Etudiant implements Serializable {
@@ -18,6 +19,9 @@ public class Etudiant implements Serializable {
 	private String prenom;
 	private Date dateNaissance;
 	private int matricule;
+	
+	@ManyToOne
+	private Formation formation;
 	
 	public Long getIdEtudiant() {
 		return idEtudiant;
@@ -49,5 +53,13 @@ public class Etudiant implements Serializable {
 	public void setMatricule(int matricule) {
 		this.matricule = matricule;
 	}
+	public Formation getFormation() {
+		return formation;
+	}
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
+	
+	
 
 }
