@@ -37,14 +37,6 @@ public class RestFiliereFormationController {
 		return service.getAll();
 	}
 	
-	
-	@RequestMapping(value = "/ffs/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
-	public FiliereFormation getFiliereFormation(@PathVariable("id") Long id)
-	{
-		return service.get(id);
-	}
-
 	@RequestMapping(value = "/ffs/{idFi}/{idFo}", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public FiliereFormation addFiliereFormation(@PathVariable("idFi") Long idFi, @PathVariable("idFo") Long idFo)
@@ -63,13 +55,6 @@ public class RestFiliereFormationController {
 	public FiliereFormation updateFiliereFormation(@RequestBody FiliereFormation e)
 	{
 		return service.update(e);
-	}
-	
-	@RequestMapping(value = "/ffs/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
-	public boolean deleteFiliereFormation(@PathVariable("id") Long id)
-	{
-		return service.delete(id);
 	}
 	
 	

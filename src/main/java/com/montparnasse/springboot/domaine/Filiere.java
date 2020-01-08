@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Filiere implements Serializable {
@@ -19,6 +21,7 @@ public class Filiere implements Serializable {
 	private Long idFiliere;
 	private String nomFiliere;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.filiere")
 	private List<FiliereFormation> filiereFormations = new ArrayList<FiliereFormation>();
 

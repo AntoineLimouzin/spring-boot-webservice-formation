@@ -26,6 +26,7 @@ public class Formation implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "formation")
 	private List<Etudiant> etudiants;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.formation")
 	private List<FiliereFormation> filiereFormations = new ArrayList<FiliereFormation>();
 	
