@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.montparnasse.springboot.domaine.Etudiant;
 import com.montparnasse.springboot.domaine.Formation;
-import com.montparnasse.springboot.service.IService;
+import com.montparnasse.springboot.service.EtudiantService;
 
 @RestController
 public class RestEtudiantController {
 	
 	@Autowired
-	private IService service;
+	private EtudiantService service;
 	
 	@RequestMapping(value = "/etudiants", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody

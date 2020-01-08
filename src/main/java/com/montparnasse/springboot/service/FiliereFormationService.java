@@ -5,21 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.montparnasse.springboot.dao.FormationDao;
-import com.montparnasse.springboot.domaine.Formation;
+import com.montparnasse.springboot.dao.FiliereFormationDao;
+import com.montparnasse.springboot.domaine.FiliereFormation;
 
 @Service
-public class FormationService {
+public class FiliereFormationService {
 	
 	@Autowired
-	private FormationDao dao;
+	private FiliereFormationDao dao;
 	
-	public Formation add(Formation e)
+	public FiliereFormation add(FiliereFormation e)
 	{
 		return dao.save(e);
 	}
 	
-	public Formation update(Formation e)
+	public FiliereFormation update(FiliereFormation e)
 	{
 		return dao.save(e);
 	}
@@ -30,12 +30,12 @@ public class FormationService {
 		return true;
 	}
 	
-	public Formation get(Long id)
+	public FiliereFormation get(Long id)
 	{
 		return dao.findById(id).get();
 	}
 	
-	public List<Formation> getAll()
+	public List<FiliereFormation> getAll()
 	{
 		return dao.findAll();
 	}

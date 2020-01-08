@@ -9,7 +9,7 @@ import com.montparnasse.springboot.dao.OrdinateurDao;
 import com.montparnasse.springboot.domaine.Ordinateur;
 
 @Service
-public class OrdinateurService implements IServiceO {
+public class OrdinateurService {
 	
 	@Autowired
 	private OrdinateurDao dao;

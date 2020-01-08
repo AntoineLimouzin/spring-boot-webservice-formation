@@ -10,7 +10,7 @@ import com.montparnasse.springboot.domaine.Etudiant;
 import com.montparnasse.springboot.domaine.Formation;
 
 @Service
-public class EtudiantService implements IService {
+public class EtudiantService {
 	
 	@Autowired
 	private EtudiantDao dao;

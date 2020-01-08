@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.montparnasse.springboot.domaine.Etudiant;
 import com.montparnasse.springboot.domaine.Formation;
-import com.montparnasse.springboot.service.IServiceF;
+import com.montparnasse.springboot.service.FormationService;
 
 @RestController
 public class RestFormationController {
 	
 	@Autowired
-	private IServiceF service;
+	private FormationService service;
 	
 	@RequestMapping(value = "/formations", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
