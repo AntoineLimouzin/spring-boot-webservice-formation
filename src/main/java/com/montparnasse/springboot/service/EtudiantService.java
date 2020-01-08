@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.montparnasse.springboot.dao.EtudiantDao;
 import com.montparnasse.springboot.domaine.Etudiant;
+import com.montparnasse.springboot.domaine.Formation;
 
 @Service
 public class EtudiantService implements IService {
@@ -38,6 +39,18 @@ public class EtudiantService implements IService {
 	public List<Etudiant> getAll()
 	{
 		return dao.findAll();
+	}
+	
+	public boolean ajouterEtudiantFormation(Long idEtudiant, Long idFormation)
+	{
+		dao.ajouterEtudiantFormation(idEtudiant, idFormation);
+		return true;
+	}
+	
+	public boolean ajouterOrdiEtudiant(Long idEtudiant, Long idOrdi)
+	{
+		dao.ajouterOrdiEtudiant(idEtudiant, idOrdi);
+		return true;
 	}
 
 }

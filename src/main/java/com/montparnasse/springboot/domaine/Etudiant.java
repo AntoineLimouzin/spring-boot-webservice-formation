@@ -3,11 +3,15 @@ package com.montparnasse.springboot.domaine;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Etudiant implements Serializable {
@@ -20,8 +24,12 @@ public class Etudiant implements Serializable {
 	private Date dateNaissance;
 	private int matricule;
 	
+	
 	@ManyToOne
 	private Formation formation;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Ordinateur ordinateur;
 	
 	public Long getIdEtudiant() {
 		return idEtudiant;
@@ -58,6 +66,12 @@ public class Etudiant implements Serializable {
 	}
 	public void setFormation(Formation formation) {
 		this.formation = formation;
+	}
+	public Ordinateur getOrdinateur() {
+		return ordinateur;
+	}
+	public void setOrdinateur(Ordinateur ordinateur) {
+		this.ordinateur = ordinateur;
 	}
 	
 	

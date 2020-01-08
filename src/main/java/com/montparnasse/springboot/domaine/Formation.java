@@ -1,6 +1,7 @@
 package com.montparnasse.springboot.domaine;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Formation implements Serializable{
@@ -19,8 +22,12 @@ public class Formation implements Serializable{
 	private String intitule;
 	private String commentaires;
 	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "formation")
 	private List<Etudiant> etudiants;
+	
+	@OneToMany(mappedBy = "id.formation")
+	private List<FiliereFormation> filiereFormations = new ArrayList<FiliereFormation>();
 	
 	public Long getIdFormation() {
 		return idFormation;
@@ -46,7 +53,13 @@ public class Formation implements Serializable{
 	public void setEtudiants(List<Etudiant> etudiants) {
 		this.etudiants = etudiants;
 	}
+	public List<FiliereFormation> getFiliereFormations() {
+		return filiereFormations;
+	}
+	public void setFiliereFormations(List<FiliereFormation> filiereFormations) {
+		this.filiereFormations = filiereFormations;
+	}
 	
 	
-
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.montparnasse.springboot.domaine.Etudiant;
 import com.montparnasse.springboot.domaine.Formation;
 import com.montparnasse.springboot.service.IServiceF;
 
@@ -25,6 +26,13 @@ public class RestFormationController {
 	public List<Formation> getFormations()
 	{
 		return service.getAll();
+	}
+	
+	@RequestMapping(value = "/formations/{id}/etudiants", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<Etudiant> getFormationEtudiants(@PathVariable("id") Long id)
+	{
+		return service.get(id).getEtudiants();
 	}
 	
 	@RequestMapping(value = "/formations/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -54,4 +62,6 @@ public class RestFormationController {
 	{
 		return service.delete(id);
 	}
+	
+	
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.montparnasse.springboot.domaine.Etudiant;
+import com.montparnasse.springboot.domaine.Formation;
 import com.montparnasse.springboot.service.IService;
 
 @RestController
@@ -39,6 +40,22 @@ public class RestEtudiantController {
 	public Etudiant addEtudiant(@RequestBody Etudiant e)
 	{
 		return service.add(e);
+	}
+	
+	@RequestMapping(value = "/inscription/{idEtudiant}/{idFormation}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public boolean updateEtudiant(@PathVariable("idEtudiant") Long idEtudiant,
+			@PathVariable("idFormation") Long idFormation)
+	{
+		return service.ajouterEtudiantFormation(idEtudiant, idFormation);
+	}
+	
+	@RequestMapping(value = "/attribution/{idEtudiant}/{idOrdi}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public boolean ajoutOrdiEtudiant(@PathVariable("idEtudiant") Long idEtudiant,
+			@PathVariable("idOrdi") Long idOrdi)
+	{
+		return service.ajouterOrdiEtudiant(idEtudiant, idOrdi);
 	}
 	
 	@RequestMapping(value = "/etudiants", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
