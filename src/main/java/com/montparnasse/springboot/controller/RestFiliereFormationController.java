@@ -58,14 +58,14 @@ public class RestFiliereFormationController {
 		return service.add(ff);
 	}
 	
-	@RequestMapping(value = "/formations", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/ffs", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public FiliereFormation updateFiliereFormation(@RequestBody FiliereFormation e)
 	{
 		return service.update(e);
 	}
 	
-	@RequestMapping(value = "/formations/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value = "/ffs/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public boolean deleteFiliereFormation(@PathVariable("id") Long id)
 	{
