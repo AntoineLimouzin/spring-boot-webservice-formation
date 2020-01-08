@@ -1,5 +1,6 @@
 package com.montparnasse.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.montparnasse.springboot.domaine.FiliereFormation;
 import com.montparnasse.springboot.domaine.FiliereFormationId;
+import com.montparnasse.springboot.domaine.Formation;
 import com.montparnasse.springboot.service.FiliereFormationService;
 import com.montparnasse.springboot.service.FiliereService;
 import com.montparnasse.springboot.service.FormationService;
@@ -37,6 +39,20 @@ public class RestFiliereFormationController {
 		return service.getAll();
 	}
 	
+	@RequestMapping(value = "/filieres/{id}/formations", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public List<Formation> getFormationsOfFiliere(@PathVariable("id") Long id)
+	{
+		
+		List<Formation> liste = new ArrayList<Formation>();
+		
+		for (FiliereFormation ff : serviceFi.get(id).getFiliereFormations()) {
+				liste.add(ff.getId().getFormation());
+		}
+		
+		return liste;
+	}
+	
 	@RequestMapping(value = "/ffs/{idFi}/{idFo}", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public FiliereFormation addFiliereFormation(@PathVariable("idFi") Long idFi, @PathVariable("idFo") Long idFo)
@@ -50,12 +66,12 @@ public class RestFiliereFormationController {
 		return service.add(ff);
 	}
 	
-	@RequestMapping(value = "/ffs", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
-	@ResponseBody
-	public FiliereFormation updateFiliereFormation(@RequestBody FiliereFormation e)
-	{
-		return service.update(e);
-	}
+//	@RequestMapping(value = "/ffs", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+//	@ResponseBody
+//	public FiliereFormation updateFiliereFormation(@RequestBody FiliereFormation e)
+//	{
+//		return service.update(e);
+//	}
 	
 	
 }
