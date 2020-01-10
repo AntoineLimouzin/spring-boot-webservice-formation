@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.montparnasse.springboot.dao.FiliereFormationDao;
 import com.montparnasse.springboot.domaine.FiliereFormation;
+import com.montparnasse.springboot.domaine.FiliereFormationId;
 
 @Service
 public class FiliereFormationService {
@@ -24,13 +25,13 @@ public class FiliereFormationService {
 		return dao.save(e);
 	}
 	
-	public boolean delete(Long id)
+	public boolean delete(FiliereFormationId id)
 	{
 		dao.deleteById(id);
 		return true;
 	}
 	
-	public FiliereFormation get(Long id)
+	public FiliereFormation get(FiliereFormationId id)
 	{
 		return dao.findById(id).get();
 	}

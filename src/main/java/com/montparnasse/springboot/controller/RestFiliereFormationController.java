@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.montparnasse.springboot.service.FiliereFormationService;
 import com.montparnasse.springboot.service.FiliereService;
 import com.montparnasse.springboot.service.FormationService;
 
+@CrossOrigin("*")
 @RestController
 public class RestFiliereFormationController {
 	
@@ -66,12 +68,21 @@ public class RestFiliereFormationController {
 		return service.add(ff);
 	}
 	
-//	@RequestMapping(value = "/ffs", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
-//	@ResponseBody
-//	public FiliereFormation updateFiliereFormation(@RequestBody FiliereFormation e)
-//	{
-//		return service.update(e);
-//	}
-	
-	
+	//Méthode qui va permettre de modifier une entité
+		@RequestMapping(value = "/filiereFormations/{numFiliere}/{numFormation}/{numNouvelleFormation}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+		@ResponseBody
+		public FiliereFormation updateFiliereFormation(@PathVariable("numFiliere") Long numFiliere, @PathVariable("numFormation") Long numFormation, @PathVariable("numNouvelleFormation") Long numNouvelleFormation) {
+			//Création de la clé composée
+			FiliereFormationId ffid = new FiliereFormationId();
+			ffid.setFiliere(serviceFi.get(numFiliere));
+			ffid.setFormation(serviceFo.get(numFormation));
+			//Récupération de la filiereFormation précédente
+			FiliereFormation filiereFormation = service.get(ffid);
+			//Suppression de la filière précédente par sa clé composée
+			service.delete(ffid);
+			//Mise à jour de la clé composée
+			ffid.setFormation(serviceFo.get(numNouvelleFormation));
+			//Envoie de la mise à jour
+			return service.update(filiereFormation);
+		}
 }
